@@ -37,8 +37,6 @@ class LinkedList:
         It takes into account 2 edge cases
         1. When the list is empty
         2. When the list has only one node in which case it sets the head and tail to be none. 
-    
-
         Returns:
             node object: temp node is returned which is the last node currently being popped by this method. 
         """
@@ -62,7 +60,38 @@ class LinkedList:
         
     #creates new node to the beginning  
     def prepend(self, value):
-        pass        
+        new_node = Node(value)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head  = new_node
+        self.length +=1
+        return True
+
+    def pop_first(self):
+        if self.length == 0:
+            return None
+        temp = self.head 
+        self.head = self.head.next
+        temp.next = None
+        self.length = self.length -1
+        if self.length == 0:
+            self.tail = None
+        return temp
+    
+    def get(self, index):
+
+        if index >= self.length or index < 0:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp
+
+        
+
     #creates new node and inserts that at a given index 
     def insert(self,index, value):
         pass
@@ -76,12 +105,17 @@ class LinkedList:
 
 #### tests
 my_linked_list = LinkedList(4)
-my_linked_list.append(23)
-my_linked_list.print_list()
-print(my_linked_list.pop())
 my_linked_list.pop()
-my_linked_list.pop()
+# my_linked_list.prepend(12)
+# my_linked_list.append(23)
+# my_linked_list.print_list()
+# my_linked_list.prepend(99)
+# print(my_linked_list.pop())
+# my_linked_list.pop()
+# my_linked_list.pop_first()
+# my_linked_list.pop()
 # print(my_linked_list.length)
-my_linked_list.print_list()
+# my_linked_list.print_list()
+print(my_linked_list.get(1))
 
 
