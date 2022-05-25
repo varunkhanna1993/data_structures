@@ -60,15 +60,12 @@ class LinkedList:
             self.tail = None
         return temp
         
-
-
     #creates new node to the beginning  
     def prepend(self, value):
         pass        
     #creates new node and inserts that at a given index 
     def insert(self,index, value):
         pass
-    
     def print_list(self):
         temp = self.head
         while temp is not None:
