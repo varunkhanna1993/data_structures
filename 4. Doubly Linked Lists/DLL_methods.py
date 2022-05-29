@@ -3,8 +3,9 @@ class Node:
     def __init__(self, value) -> None:
         self.value = value
         self.next = None
+        self.prev = None
 
-class LinkedList:
+class DoublyLinkedList:
     #creates the new node
     def __init__(self, value) -> None:
         new_node = Node(value)
@@ -26,11 +27,11 @@ class LinkedList:
         #now if there are any other nodes in the list
         else:
             self.tail.next = new_node
+            new_node.prev = self.tail 
             self.tail = new_node
         self.length+=1
         #we are gonna write another method which would rely on this append method and that requires this method to return true or false
         return True
-
 
     def pop(self):
         """this method returns the last node that has been popped.
@@ -45,19 +46,18 @@ class LinkedList:
         if self.length == 0:
             return None
         
-        pre = self.head
-        temp = self.head
-        while temp.next is not None:
-            pre = temp
-            temp = temp.next
-        self.tail = pre
-        self.tail.next = None
-        self.length = self.length -1
-        if self.length == 0:
+        temp = self.tail
+        if self.length == 1:
             self.head = None
             self.tail = None
+        else:
+            self.tail = self.tail.prev
+            self.tail.next = None
+            temp.prev = None
+
+        self.length = self.length -1
         return temp
-        
+
     #creates new node to the beginning  
     def prepend(self, value):
         new_node = Node(value)
@@ -66,29 +66,40 @@ class LinkedList:
             self.tail = new_node
         else:
             new_node.next = self.head
+            self.head.prev = new_node
             self.head  = new_node
         self.length +=1
         return True
-
+    
     def pop_first(self):
         if self.length == 0:
             return None
         temp = self.head 
-        self.head = self.head.next
-        temp.next = None
-        self.length = self.length -1
-        if self.length == 0:
+        if self.length == 1:
+            self.head = None
             self.tail = None
+        else:
+            self.head = self.head.next
+            self.head.prev = None
+            temp.next = None
+        self.length = self.length -1
         return temp
     
     def get(self, index):
         if index >= self.length or index < 0:
             return None
         temp = self.head
-        for _ in range(index):
-            temp = temp.next
+        # if its in the first half, we run the for loop as usual for singly linked list
+        if index < self.length/2:
+            for _ in range(index):
+                temp = temp.next
+        # if its in the second half, then we start from the tail so that we can optimise it. 
+        else:
+            temp = self.tail 
+            for _ in range(self.length -1, index, -1):
+                temp = temp.prev
         return temp
-    
+
     def set_value(self, index, value):
 
         ### one method to write the set value method
@@ -104,8 +115,7 @@ class LinkedList:
             temp.value = value
             return True
         return False
-        
-
+    
     #creates new node and inserts that at a given index 
     def insert(self,index, value):
         if index <0 or index > self.length:
@@ -115,11 +125,17 @@ class LinkedList:
         if index == self.length:
             return self.append(value)
         new_node = Node(value)
-        temp  = self.get(index - 1)
-        new_node.next = temp.next
-        temp.next = new_node
+        before  = self.get(index - 1)
+        after = before.next
+
+        new_node.prev = before
+        new_node.next = after
+        before.next = new_node
+        after.prev = new_node
+
         self.length +=1
         return True
+    
 
     def remove(self, index):
         if index < 0 or index >= self.length:
@@ -130,29 +146,14 @@ class LinkedList:
         if index == self.length -1:
             temp = self.pop()
             return temp
-        pre = self.get(index - 1)
-        temp = pre.next
-        pre.next = temp.next
+        temp = self.get(index)
+        temp.next.prev = temp.prev
+        temp.prev.next = temp.next
+        temp.prev = None
         temp.next = None
+
         self.length = self.length -1
         return temp
-
-    def reverse(self):
-        temp = self.head
-        self.head = self.tail
-        self.tail = temp
-
-        after = temp.next 
-        before = None
-   
-        for _ in range(self.length):
-            after = temp.next 
-            temp.next = before
-            before = temp 
-            temp = after
-        return True
-
-    
 
     def print_list(self):
         temp = self.head
@@ -161,22 +162,19 @@ class LinkedList:
             temp = temp.next
         print("This linked list has a length of", self.length)
 
-
-#### tests
-my_linked_list = LinkedList(4)
-# my_linked_list.pop()
-my_linked_list.prepend(12)
-my_linked_list.append(23)
-my_linked_list.append(75)
-my_linked_list.append(97)
-# my_linked_list.print_list()
-# my_linked_list.prepend(99)
-# print(my_linked_list.pop())
-# my_linked_list.pop()
-# my_linked_list.pop_first()
-# my_linked_list.pop()
-# print(my_linked_list.length)
-# my_linked_list.print_list()
-my_linked_list.reverse()
-
-my_linked_list.print_list()
+if __name__ == "__main__":
+    my_doubly_linked_list = DoublyLinkedList(7)
+    print("=============")
+    my_doubly_linked_list.append(5)
+    my_doubly_linked_list.append(23)
+    # my_doubly_linked_list.pop()
+    # my_doubly_linked_list.pop()
+    # my_doubly_linked_list.pop()
+    my_doubly_linked_list.prepend(2312)
+    # my_doubly_linked_list.pop_first()
+    # print(my_doubly_linked_list.pop_first())
+    # my_doubly_linked_list.pop_first()
+    # print(my_doubly_linked_list.get(2).value)
+    my_doubly_linked_list.insert(2,550000)
+    print(my_doubly_linked_list.remove(2).value)
+    my_doubly_linked_list.print_list()
