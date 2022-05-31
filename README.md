@@ -4,18 +4,26 @@
     <br>
 </h1>
 
-## Course Link 
-- [Code from the udemy course](https://sparknz.udemy.com/course/data-structures-algorithms-python/learn/lecture/27741196#overview)
+## Important Links
+- [Course Link](https://sparknz.udemy.com/course/data-structures-algorithms-python/learn/lecture/27741196#overview)
 
 
 ## Contents
-### Data Structures
+<h2 align="center">
+  Data Structures
+</h2> 
+- Linked Lists <br>
+- Doubly Linked Lists <br>
+- Stacks and Queues <br>
+- Binary Search Trees <br>
+- Hash Tables <br>
+- Graphs <br>
 
-### Algorithms
-- [Basic Sorting Algorithms](https://github.com/varunkhanna1993/data_structures#:~:text=10.%20Algorithms%3A%20Basic%20Sorting)
+
+ <h2 align="center">
+  Algorithms
+</h2>
+- Recursion <br>
+- Basic Sorting Algorithms: Bubble Sort, Selection Sort, Insertion Sort <br>
 
 
-
-Code from the udemy course - https://sparknz.udemy.com/course/data-structures-algorithms-python/learn/lecture/27741196#overview
-
-This also helps me in practicing and writing the code along with the course. 
