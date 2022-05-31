@@ -5,9 +5,10 @@
 </h1>
 
 <h2 align="center">
-  Contents
-</h2> 
-## Data Structures
+  Contents <br>
+</h2>  
+
+## Data Structures <br>
 - Linked Lists <br>
 - Doubly Linked Lists <br>
 - Stacks and Queues <br>
