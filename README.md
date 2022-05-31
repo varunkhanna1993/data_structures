@@ -4,14 +4,10 @@
     <br>
 </h1>
 
-## Important Links
-- [Course Link](https://sparknz.udemy.com/course/data-structures-algorithms-python/learn/lecture/27741196#overview)
-
-
-## Contents
 <h2 align="center">
-  Data Structures
+  Contents
 </h2> 
+## Data Structures
 - Linked Lists <br>
 - Doubly Linked Lists <br>
 - Stacks and Queues <br>
@@ -19,11 +15,11 @@
 - Hash Tables <br>
 - Graphs <br>
 
-
- <h2 align="center">
-  Algorithms
-</h2>
+## Algorithms
 - Recursion <br>
 - Basic Sorting Algorithms: Bubble Sort, Selection Sort, Insertion Sort <br>
 
+## Important Links
+- [Course Link](https://sparknz.udemy.com/course/data-structures-algorithms-python/learn/lecture/27741196#overview)
 
+## Learnings
