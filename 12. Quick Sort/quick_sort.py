@@ -26,5 +26,5 @@ def quick_sort(my_list):
 my_list = [4,6,1,7,3,2,5]
 # 
 # print(pivot(my_list,0,6))
-print(quick_sort_helper(my_list, 0 ,6))
+print(quick_sort(my_list))
 # print(my_list)
